@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from '../services/message.service';
 import { User } from '../user';
-import { USERS } from './../mock-users';
+import { UserService } from './../services/user.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -9,22 +10,23 @@ import { USERS } from './../mock-users';
 export class UsersComponent implements OnInit{
 
   selectedUser?: User;
-  onSelect(user: User): void {
-  this.selectedUser = user;
-}
+
+  users: User[] = [];
+
+  constructor(private userService: UserService, private messageService: MessageService) { }
   
-  user: User = {
-    id : 1,
-    name: 'mac'
-  }
-
-  users = USERS;
-
-  constructor(){}
-
   ngOnInit(): void {
-    // throw new Error('Method not implemented.');
+    this.getUsers();
+  }
+
+  onSelect(user: User): void {
+    this.selectedUser = user;
+    this.messageService.add(`UsersComponent: Selected user id=${user.id}`);
   }
   
+  getUsers(): void {
+    this.userService.getUsers()
+        .subscribe(users => this.users = users);
+  }
 
 }
