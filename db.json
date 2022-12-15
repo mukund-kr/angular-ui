@@ -1,26 +1,34 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "mk",
-      "email": "mk@gmail.com",
-      "mobile": 7073817342,
-      "country": "India",
-      "region": "APAC",
-      "type": "admin",
+      "id": 12213,
+      "username": "ma",
+      "email": "mk@b.com",
+      "mobile": "1098765432",
+      "country": "USA",
+      "type": "editor",
       "status": true,
-      "activationDate": 1671032059,
-      "expiryDate": 1702568129
-    }
-  ],
-  "comments": [
+      "createDate": 1671111501963
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 12214,
+      "username": "ma",
+      "email": "mk@b.com",
+      "mobile": "1098765432",
+      "country": "USA",
+      "type": "editor",
+      "status": true,
+      "createDate": 1671111531189
+    },
+    {
+      "id": 1212,
+      "username": "mac",
+      "email": "mk@b.com",
+      "mobile": "1214324365",
+      "country": "USA",
+      "type": "editor",
+      "status": true,
+      "createDate": 1671111608582
     }
-  ],
-  "profile": {
-    "name": "admin"
-  }
+  ]
 }

@@ -1,42 +1,48 @@
+import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCommonModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { MessageComponent } from './messages/messages.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { UsersComponent } from './users/users.component';
+import { AddUserComponent } from './component/add-user/add-user.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { UsersComponent } from './component/users/users.component';
+import { StatusFormatterPipe } from './pipes/status-formatter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
-    UserDetailComponent,
-    SidenavComponent,
-    DashboardComponent,
-    MessageComponent,
+    NavbarComponent,
+    StatusFormatterPipe,
+    AddUserComponent,
   ],
   imports: [
+    CommonModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+    }),
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatSidenavModule,
     MatToolbarModule,
     MatCommonModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

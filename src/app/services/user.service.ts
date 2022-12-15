@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { USERS } from '../mock-users';
-import { User } from '../user';
-import { MessageService } from './message.service';
+import { catchError, Observable, throwError } from 'rxjs';
+import { User } from '../model/user';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,16 +10,26 @@ export class UserService {
   private usersUrl = 'http://localhost:3000/users';  // URL to web api
   
   constructor(
-    private http: HttpClient,
-    private messageService: MessageService) { }
+    private http: HttpClient) { }
 
-  getUsers(): Observable<User[]> {
-    const users = of(USERS);
-    this.messageService.add('UserService: fetched users');
-    // return this.http.get<User[]>(this.usersUrl)
-    return users;
+  getUsers():  Observable<HttpResponse<User[]>> {    
+    return this.http.get<User[]>(this.usersUrl, { observe: 'response' }).pipe(catchError(this.handleError));
   }
-  private log(message: string) {
-    this.messageService.add(`UserService: ${message}`);
-}
+  
+  createUser(user:User):Observable<HttpResponse<User>>{
+    return this.http.post<any>(this.usersUrl,user ,{ observe: 'response' }).pipe(catchError(this.handleError));
+
+  }
+  
+  updateUser(user:User):Observable<HttpResponse<User>>{
+    return this.http.put<any>(this.usersUrl,user ,{ observe: 'response' }).pipe(catchError(this.handleError));
+  }
+
+  deleteUser(userId:number):Observable<HttpResponse<any>> {
+    return this.http.delete<any>(this.usersUrl+'/'+userId, { observe: 'response' }).pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    return throwError(()=>error)
+  }
 }
