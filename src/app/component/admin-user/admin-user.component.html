@@ -1,0 +1,36 @@
+<div class="container"></div>
+<div class="ringLoading" *ngIf="loading">
+    <div class="ringLoadingDiv">
+        <img src="assets\images\DoubleRing.gif" alt="loading" *ngIf="loading" />
+    </div>
+</div>
+<div class="container"></div>
+
+<div class="container">
+    <table border="1" class="table table-responsive table-hover table-bordered" style="margin-top: 30px">
+        <thead>
+            <tr class="table-secondary">
+                <th scope="col">User Id</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email Id</th>
+                <th scope="col">Contact No</th>
+                <th scope="col">Country</th>
+                <th scope="col">User Role</th>
+                <th scope="col">Creation Date</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let userObj of users">
+                <td>{{ userObj?.id }}</td>
+                <td>{{ userObj?.username }}</td>
+                <td>{{ userObj?.email }}</td>
+                <td>{{ userObj?.mobile }}</td>
+                <td>{{ userObj?.country }}</td>
+                <td>{{ userObj?.type }}</td>
+                <td>{{ userObj?.createDate | date : dateDisplayFormat }}</td>
+                <td>{{ userObj.status | statusFormatter }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

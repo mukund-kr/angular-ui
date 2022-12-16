@@ -1,16 +1,16 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/services/user.service';
 import { User } from '../../model/user';
-import { UserService } from '../../services/user.service';
+
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css'],
+  selector: 'app-admin-user',
+  templateUrl: './admin-user.component.html',
+  styleUrls: ['./admin-user.component.css'],
 })
-export class UsersComponent implements OnInit {
-  // selectedUser?: User;
+export class AdminUserComponent {
   loading: boolean = false;
 
   users: User[] = [];
@@ -24,15 +24,15 @@ export class UsersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getAdminUsers();
   }
 
-  getUsers(): void {
+  getAdminUsers(): void {
     this.setLoading(true);
     this.userService.getUsers().subscribe(
       (response: HttpResponse<User[]>) => {
         this.users = response.body != null ? response.body : [];
-        // console.log(this.users);
+        this.users = this.users.filter((u) => u.type == 'admin');
         this.setLoading(false);
       },
       (error: HttpErrorResponse) => {
@@ -41,21 +41,7 @@ export class UsersComponent implements OnInit {
     );
   }
 
-  deleteUser(id: number): void {
-    this.setLoading(true);
-    this.userService.deleteUser(id).subscribe((response: HttpResponse<any>) => {
-      if (response.status == 200) {
-        this.toastr.error('User deleted');
-        this.getUsers();
-      }
-    });
-  }
-
   setLoading(status: boolean): void {
     this.loading = status;
-  }
-
-  public openAddUser() {
-    this.router.navigate(['/add-user']);
   }
 }

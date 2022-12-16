@@ -15,6 +15,7 @@ import { AddUserComponent } from './component/add-user/add-user.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { UsersComponent } from './component/users/users.component';
 import { StatusFormatterPipe } from './pipes/status-formatter.pipe';
+import { AdminUserComponent } from './component/admin-user/admin-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { StatusFormatterPipe } from './pipes/status-formatter.pipe';
     NavbarComponent,
     StatusFormatterPipe,
     AddUserComponent,
+    AdminUserComponent,
   ],
   imports: [
     CommonModule,
