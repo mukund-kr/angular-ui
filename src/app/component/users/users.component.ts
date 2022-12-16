@@ -7,51 +7,54 @@ import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
 })
-export class UsersComponent implements OnInit{
-
+export class UsersComponent implements OnInit {
   selectedUser?: User;
-  loading:boolean = false;
+  loading: boolean = false;
 
   users: User[] = [];
-  
-  dateDisplayFormat = "MMM d, y, h:mm:ss a"
-  
-  constructor(private userService: UserService, private toastr: ToastrService, private router: Router) { }
-  
+
+  dateDisplayFormat = 'MMM d, y, h:mm:ss a';
+
+  constructor(
+    private userService: UserService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
+
   ngOnInit(): void {
     this.getUsers();
   }
 
   getUsers(): void {
     this.setLoading(true);
-    this.userService.getUsers()
-        .subscribe((response:HttpResponse<User[]>) => {
-          this.users = response.body!=null?response.body:[];
-          this.setLoading(false);
-        },(error:HttpErrorResponse)=>{
-          this.setLoading(false); 
-        });           
+    this.userService.getUsers().subscribe(
+      (response: HttpResponse<User[]>) => {
+        this.users = response.body != null ? response.body : [];
+        this.setLoading(false);
+      },
+      (error: HttpErrorResponse) => {
+        this.setLoading(false);
+      }
+    );
   }
 
-  deleteUser(id:number):void{
+  deleteUser(id: number): void {
     this.setLoading(true);
-    this.userService.deleteUser(id)
-    .subscribe((response:HttpResponse<any>)=>{
-      if (response.status==200){
-        this.toastr.error("User deleted");
+    this.userService.deleteUser(id).subscribe((response: HttpResponse<any>) => {
+      if (response.status == 200) {
+        this.toastr.error('User deleted');
         this.getUsers();
       }
-   })
+    });
   }
 
-  setLoading(status:boolean):void{
+  setLoading(status: boolean): void {
     this.loading = status;
   }
 
   public openAddUser() {
-    this.router.navigate(["/add-user"]);
+    this.router.navigate(['/add-user']);
   }
-
 }

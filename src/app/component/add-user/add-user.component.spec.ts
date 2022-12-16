@@ -14,18 +14,19 @@ fdescribe('AddUserComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AddUserComponent],
-      imports: [BrowserAnimationsModule, 
-        HttpClientModule, 
-        ReactiveFormsModule, 
+      imports: [
+        BrowserAnimationsModule,
+        HttpClientModule,
+        ReactiveFormsModule,
         FormsModule,
         ToastrModule.forRoot({
-        timeOut: 3000,
-        positionClass: 'toast-top-right',
-        preventDuplicates: false,
-      }),],
+          timeOut: 3000,
+          positionClass: 'toast-top-right',
+          preventDuplicates: false,
+        }),
+      ],
       providers: [UserService, ToastrService],
-    })
-      .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AddUserComponent);
     component = fixture.componentInstance;
@@ -35,5 +36,4 @@ fdescribe('AddUserComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
 });

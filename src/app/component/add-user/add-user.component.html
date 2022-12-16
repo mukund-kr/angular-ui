@@ -1,10 +1,9 @@
-<div class="container" style="margin-top: 30px; width: 40%;">
+<div class="container" style="margin-top: 30px; width: 40%">
     <form class="needs-validation shadow data-container" [formGroup]="form">
         <div class="row py-3">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-
-                <div class="mb-3" style="margin-top: 10px;">
+                <div class="mb-3" style="margin-top: 10px">
                     <label for="id" class="form-label">ID:</label>
                     <input type="text" class="form-control form-control-sm" id="id" placeholder="Enter Id..."
                         formControlName="id" />
@@ -18,8 +17,9 @@
                     <label for="username" class="form-label">Username:</label>
                     <input type="text" class="form-control form-control-sm" username="username"
                         placeholder="Enter username..." formControlName="username" />
-                    <div *ngIf="form.get('username')?.touched && form.get('username')?.invalid">
-
+                    <div *ngIf="
+              form.get('username')?.touched && form.get('username')?.invalid
+            ">
                         <span *ngIf="(form.get('username')?.errors && form.get('username')?.errors?.['required'])"
                             class="form-err">Please enter username</span>
 
@@ -33,7 +33,6 @@
                     <input type="text" class="form-control form-control-sm" id="email" placeholder="Enter email id..."
                         formControlName="email" />
                     <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
-
                         <span *ngIf="(form.get('email')?.errors && form.get('email')?.errors?.['required'])"
                             class="form-err">Please enter email id</span>
 
@@ -47,7 +46,6 @@
                     <input type="text" class="form-control form-control-sm" id="mobile"
                         placeholder="Enter Contact No..." formControlName="mobile" />
                     <div *ngIf="form.get('mobile')?.touched && form.get('mobile')?.invalid">
-
                         <span *ngIf="(form.get('mobile')?.errors && form.get('mobile')?.errors?.['required'])"
                             class="form-err">Please enter contact no</span>
                         <span *ngIf="(form.get('mobile')?.errors && form.get('mobile')?.errors?.['pattern'])"
@@ -60,11 +58,13 @@
                     <select class="form-control form-control-sm" name="userType" formControlName="userType">
                         <ng-template ngFor let-userTypeObj [ngForOf]="userTypeList">
                             <option [value]="userTypeObj">
-                                {{userTypeObj}}
+                                {{ userTypeObj }}
                             </option>
                         </ng-template>
                     </select>
-                    <div *ngIf="form.get('userType')?.touched && form.get('userType')?.invalid">
+                    <div *ngIf="
+              form.get('userType')?.touched && form.get('userType')?.invalid
+            ">
                         <span *ngIf="(form.get('userType')?.errors && form.get('userType')?.errors?.['required'])"
                             class="form-err">Please select role</span>
                     </div>
@@ -75,7 +75,7 @@
                     <select class="form-control form-control-sm" name="Country" formControlName="country">
                         <ng-template ngFor let-countryObj [ngForOf]="countryList">
                             <option [value]="countryObj">
-                                {{countryObj}}
+                                {{ countryObj }}
                             </option>
                         </ng-template>
                     </select>
@@ -84,10 +84,9 @@
                             class="form-err">Please select country</span>
                     </div>
                 </div>
-
             </div>
             <div class="col-12">
-                <button class="btn btn-primary float-end " type="submit" [disabled]="form.invalid" (click)="addUser()">
+                <button class="btn btn-primary float-end" type="submit" [disabled]="form.invalid" (click)="addUser()">
                     Add User
                 </button>
             </div>

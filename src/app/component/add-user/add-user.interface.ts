@@ -1,6 +1,8 @@
-export class AddUserInterface  {
-    loanAmount!: number;
-    interestRate!: number;
-    loanTerm!: number;
-    monthlyPayment?: number;
+export class AddUserInterface {
+  username!: string;
+  email!: string;
+  mobile!: number;
+  country!: string;
+  type!: string;
+  status!: boolean;
 }
